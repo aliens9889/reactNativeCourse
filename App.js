@@ -8,23 +8,45 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends Component {
 
-type Props = {};
-export default class App extends Component<Props> {
+  state = {
+    placeName: '',
+    places: []
+  };
+
+  placeNameChangedHandler = val => {
+    this.setState({
+      placeName: val
+    });
+  };
+
+  submitPressHandler = () => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(this.state.placeName)
+      }
+    });
+  }
+
   render() {
+    
+    const placesOutput = this.state.places.map((place, i) => (<Text key={i}>{place}</Text>));
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <TextInput 
+          placeholder= 'An awesome place'
+          onChangeText={this.placeNameChangedHandler}
+          value={this.state.placeName}
+        />
+        <Button 
+          title='Add'
+          onPress={this.submitPressHandler}
+        />
+        <View>{placesOutput}</View>
       </View>
     );
   }
