@@ -54,3 +54,5 @@ Beside of installed it, you have to make some modifications. This case I will ex
 6. With the past step will appear a file `Info.plist`. On Information Property List click with the right click and select the option **Add Row**
 7. In the new row you write (Will autocomplete) this: `Fonts provided by application`. This new Row will have one item (Item 0). And value you will write the font you added before **Ionicons.ttf**
 8. After all this process, you will can use this dependency and what the adds and changes you will code.
+
+For more detail about React Native Vector Icons click [here](https://github.com/oblador/react-native-vector-icons)
